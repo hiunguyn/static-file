@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎡 Vòng Quay May Mắn</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🎡 VÒNG QUAY MAY MẮN</h1>
+        </header>
+
+        <section class="wheel-section">
+            <div class="wheel-container">
+                <svg class="pointer" viewBox="0 0 40 50" xmlns="http://www.w3.org/2000/svg">
+                    <polygon points="20,50 0,0 40,0" fill="#ff6b35"/>
+                    <polygon points="20,45 5,5 35,5" fill="#ff8c42"/>
+                </svg>
+                <canvas id="wheelCanvas" width="400" height="400"></canvas>
+            </div>
+        </section>
+
+        <section class="input-section">
+            <textarea id="entryInput" placeholder="Nhập danh sách (mỗi dòng 1 entry)..." rows="4"></textarea>
+            <div class="button-row">
+                <button id="addBtn" class="btn btn-add">+ Thêm danh sách</button>
+                <button id="shuffleBtn" class="btn btn-shuffle">🔀 Trộn</button>
+            </div>
+        </section>
+
+        <section class="list-section">
+            <div class="list-header">
+                <span id="countLabel">0 entries</span>
+            </div>
+            <ul id="entryList" class="entry-list"></ul>
+        </section>
+
+        <section class="spin-section">
+            <button id="spinBtn" class="btn btn-spin" disabled>🎰 QUAY!</button>
+        </section>
+
+        <section class="winner-section" id="winnerSection">
+            <h2>🎉 Người chiến thắng!</h2>
+            <p id="winnerText" class="winner-text"></p>
+            <div class="winner-buttons">
+                <button id="deleteWinnerBtn" class="btn btn-danger">🗑️ Xoá khỏi wheel</button>
+                <button id="keepWinnerBtn" class="btn btn-secondary">✓ Giữ lại & Quay tiếp</button>
+            </div>
+        </section>
+
+        <div class="modal" id="emptyModal">
+            <div class="modal-content">
+                <h2>🎊 Hết rồi!</h2>
+                <p>Tất cả đã được quay hết. Chơi lại nào!</p>
+                <button id="resetBtn" class="btn btn-reset">🔄 Chơi lại</button>
+            </div>
+        </div>
+    </div>
+
+    <canvas id="confettiCanvas"></canvas>
+    <script src="script.js"></script>
+</body>
+</html>
