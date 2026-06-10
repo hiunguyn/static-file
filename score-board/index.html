@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Bảng Điểm Billiard</title>
+  <meta name="author" content="Hieu Nguyen" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="theme-color" content="#0a0a0e" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="vi_VN" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="table"></div>
+<div class="balls-deco" id="ballsDeco"></div>
+<div id="app">
+  <div class="logo">
+    <div class="logo-wordmark" aria-hidden="true">Score board</div>
+    <div class="logo-line">
+      <span></span>
+      <div class="cue-ball"></div>
+      <span></span>
+    </div>
+    <p>Bảng điểm Billiards Số</p>
+  </div>
+  <div class="screen" id="screenHome">
+    <button class="btn btn-primary" onclick="goMode()">Bắt đầu</button>
+    <button class="btn btn-secondary" onclick="openSettings()">Cài đặt</button>
+  </div>
+  <div class="screen hidden" id="screenMode">
+    <div class="mode-row">
+      <div class="mode-card" onclick="selectMode('race')">
+        <div class="mode-icon">🎱</div>
+        <div class="mode-label">Race</div>
+        <div class="mode-desc">Đua về đích ai tới số trước thắng</div>
+      </div>
+      <div class="mode-card" onclick="selectMode('mam')">
+        <div class="mode-icon">☢️</div>
+        <div class="mode-label">Mâm Đền</div>
+        <div class="mode-desc">Tính điểm mâm đền</div>
+      </div>
+    </div>
+    <button class="btn btn-back btn" onclick="goHome()">← Quay lại</button>
+  </div>
+  <div class="screen hidden" id="screenPlayers">
+    <div class="screen-subtitle">Số người chơi</div>
+    <div class="pc-row">
+      <div class="pc-card" onclick="selectPlayers(2)">2</div>
+      <div class="pc-card" onclick="selectPlayers(3)">3</div>
+      <div class="pc-card" onclick="selectPlayers(4)">4</div>
+      <div class="pc-card" onclick="selectPlayers(5)">5</div>
+      <div class="pc-card" onclick="selectPlayers(6)">6</div>
+    </div>
+    <button class="btn btn-back btn" onclick="backToMode()">← Quay lại</button>
+  </div>
+</div>
+<div id="screenGame" class="hidden">
+  <div class="game-topbar">
+    <div class="game-topbar-between">
+      <div class="game-topbar-left">
+        <button class="game-icon-btn" id="menuBtn" onclick="toggleMenu(event)">☰</button>
+        <button class="game-icon-btn history-btn" id="historyBtn" onclick="toggleHistory()">LỊCH SỬ</button>
+      </div>
+      <button class="mam-undo-btn hidden" id="mamUndoBtn" onclick="undoMamScore()">Ctrl + Z</button>
+    </div>
+    <div class="game-mode-label" id="gameModeLabel">RACE</div>
+  </div>
+  <div class="game-dropdown hidden" id="gameDropdown">
+    <button class="dropdown-item" onclick="confirmReset()">
+      <span class="di-icon">🔄</span> Làm mới
+    </button>
+    <button class="dropdown-item" onclick="openMamScoreModeSelector()">
+      <span class="di-icon">⚙️</span> Cách tính điểm
+    </button>
+    <button class="dropdown-item di-exit" onclick="confirmExit()">
+      <span class="di-icon">🚪</span> Thoát
+    </button>
+  </div>
+  <div class="mam-score-mode-overlay hidden" id="mamScoreModeOverlay">
+    <div class="mam-score-mode-panel">
+      <div class="mam-score-mode-title">⚙️ Cách tính điểm</div>
+      <div class="mam-score-mode-x2row">
+        <div class="mam-score-mode-x2label">
+          <div class="mam-score-mode-x2name">✕ 2 điểm</div>
+          <div class="mam-score-mode-x2desc">Hiện nút X2 trong mâm</div>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" id="x2ToggleInputGame" onchange="toggleX2SettingGame()">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="mam-score-mode-divider"></div>
+      <div class="mam-score-mode-x2row">
+        <div class="mam-score-mode-x2label">
+          <div class="mam-score-mode-x2name">Số nút điểm</div>
+          <div class="mam-score-mode-x2desc">Số nút +/− trong mâm (tối đa 12)</div>
+        </div>
+        <div class="score-count-ctrl">
+          <button class="score-count-btn" onclick="changeScoreCount(-1)">−</button>
+          <span class="score-count-val" id="scoreCountValGame">3</span>
+          <button class="score-count-btn" onclick="changeScoreCount(1)">＋</button>
+        </div>
+      </div>
+      <button class="mam-score-mode-close" onclick="closeMamScoreModeSelector()">✕</button>
+    </div>
+  </div>
+  <div class="game-cards-wrap" id="gameCardsWrap"></div>
+  <div class="mam-panel hidden" id="mamPanel">
+    <span class="mam-panel-label">Chọn điểm</span>
+    <div id="mamBtnsWrap"></div>
+    <div class="mam-selected-names" id="mamSelectedNames"></div>
+    <div class="x2-row hidden" id="mamX2Row">
+      <button class="x2-btn" id="mamX2Btn" onclick="toggleX2()">✕ 2</button>
+    </div>
+    <button class="mam-cancel-btn" onclick="cancelMamSelect()">✕</button>
+  </div>
+  <div class="confirm-overlay hidden" id="resetConfirmOverlay">
+    <div class="confirm-box">
+      <div class="confirm-icon">🔄</div>
+      <p class="confirm-msg">Reset về 0 điểm và xoá toàn bộ lịch sử?</p>
+      <div class="confirm-btns">
+        <button class="confirm-btn confirm-no" onclick="closeResetConfirm()">Không</button>
+        <button class="confirm-btn confirm-yes" onclick="doResetConfirmed()">Có</button>
+      </div>
+    </div>
+  </div>
+  <div class="confirm-overlay hidden" id="confirmOverlay">
+    <div class="confirm-box">
+      <div class="confirm-icon">⚠️</div>
+      <p class="confirm-msg">Khi thoát sẽ mất hết thông tin trận đấu</p>
+      <div class="confirm-btns">
+        <button class="confirm-btn confirm-no" onclick="closeConfirm()">Không</button>
+        <button class="confirm-btn confirm-yes" onclick="doExitGame()">Có</button>
+      </div>
+    </div>
+  </div>
+  <div class="history-overlay hidden" id="historyOverlay">
+    <div class="history-panel">
+      <div class="history-header">
+        <div>Lịch sử điểm</div>
+        <button class="history-close-btn" onclick="toggleHistory()">✕</button>
+      </div>
+      <div class="history-list" id="historyList"></div>
+    </div>
+  </div>
+</div>
+<div class="settings-overlay hidden" id="settingsOverlay">
+  <div class="settings-panel">
+    <div class="settings-header">
+      <span>Cài đặt</span>
+      <button class="settings-close" onclick="closeSettings()">✕</button>
+    </div>
+    <div class="settings-body">
+<div class="settings-row">
+        <div class="settings-row-info">
+          <div class="settings-row-label">x2 lỗ mười</div>
+          <div class="settings-row-desc">Hiện nút X2 trong mâm</div>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" id="x2ToggleInput" onchange="toggleX2Setting()">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="settings-row" id="settingsScoreCountRow">
+        <div class="settings-row-info">
+          <div class="settings-row-label">Số nút điểm</div>
+          <div class="settings-row-desc">Số nút +/− trong mâm và đền làng (tối đa 12)</div>
+        </div>
+        <div class="score-count-ctrl">
+          <button class="score-count-btn" onclick="changeScoreCount(-1)">−</button>
+          <span class="score-count-val" id="scoreCountValSettings">3</span>
+          <button class="score-count-btn" onclick="changeScoreCount(1)">＋</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
