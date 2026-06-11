@@ -128,7 +128,7 @@ function cancelMamSelect() { G.pair = []; renderCards(); updateMamPanel(); save(
 function toggleX2() { G.x2now = !G.x2now; $('#mamX2Btn')?.classList.toggle('active', G.x2now); }
 function toggleX2Setting() { cfg.x2on = $('#x2ToggleInput').checked; G.x2on = cfg.x2on; saveCfg(); updateMamPanel(); }
 function toggleX2SettingGame() { cfg.x2on = $('#x2ToggleInputGame').checked; G.x2on = cfg.x2on; saveCfg(); updateMamPanel(); }
-function openMamScoreModeSelector() { show('#mamScoreModeOverlay'); hide('#gameDropdown'); }
+function openMamScoreModeSelector() { $('#x2ToggleInputGame').checked = cfg.x2on; $('#scoreCountValGame').textContent = cfg.scoreN; show('#mamScoreModeOverlay'); hide('#gameDropdown'); }
 function closeMamScoreModeSelector() { hide('#mamScoreModeOverlay'); }
 // ---- score count ----
 function changeScoreCount(d) { const n = G.scoreN + d; if (n < 1 || n > MAX_SCORE) return; G.scoreN = cfg.scoreN = n; ['#scoreCountValGame','#scoreCountValSettings'].forEach(s => { const el = $(s); if (el) el.textContent = n; }); updateMamPanel(); saveCfg(); }

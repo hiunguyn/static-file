@@ -121,9 +121,9 @@ body,html{height:100%;font-family:Montserrat,sans-serif;background:var(--felt);o
 .history-empty{color:var(--text-muted);padding:16px;text-align:center;font-size:.88rem}
 .mam-score-mode-overlay{position:absolute;inset:0;z-index:350;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center}
 .mam-score-mode-overlay.hidden{display:none}
-.mam-score-mode-panel{background:linear-gradient(160deg,#141418 0,#0e0e12 100%);border:1px solid rgba(184,137,58,.28);border-radius:22px;padding:30px 26px 26px;width:min(340px,88vw);text-align:center;box-shadow:0 0 0 1px rgba(255,255,255,.04) inset,0 0 40px rgba(184,137,58,.08),0 24px 64px rgba(0,0,0,.9);animation:fadeUp .24s var(--ease) both;position:relative;overflow:hidden}
+.mam-score-mode-panel{background:linear-gradient(160deg,#141418 0,#0e0e12 100%);border:1px solid rgba(184,137,58,.28);border-radius:22px;padding:30px 26px 26px;width:min(340px,88vw);box-shadow:0 0 0 1px rgba(255,255,255,.04) inset,0 0 40px rgba(184,137,58,.08),0 24px 64px rgba(0,0,0,.9);animation:fadeUp .24s var(--ease) both;position:relative;overflow:hidden}
 .mam-score-mode-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(184,137,58,.35),transparent);pointer-events:none}
-.mam-score-mode-title{font-size:1.4rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold2);text-shadow:0 0 20px rgba(184,137,58,.35);margin-bottom:24px}
+.mam-score-mode-title{font-size:1.4rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold2);text-shadow:0 0 20px rgba(184,137,58,.35);margin-bottom:24px;text-align:center;}
 .mam-score-mode-close{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);color:rgba(255,255,255,.6);font-size:1.1rem;cursor:pointer;transition:.18s;display:flex;align-items:center;justify-content:center}
 .mam-score-mode-close:hover{background:rgba(255,255,255,.12);color:#fff}
 .mam-score-mode-divider{width:100%;height:1px;background:rgba(255,255,255,.08);margin:16px 0 14px}
@@ -133,7 +133,7 @@ body,html{height:100%;font-family:Montserrat,sans-serif;background:var(--felt);o
 .mam-score-mode-x2desc{font-size:.72rem;color:var(--text-muted);margin-top:3px}
 .game-cards-wrap{flex:1;display:flex;flex-direction:column;gap:8px;padding:10px 12px;overflow-y:auto}
 .score-card{flex:1;min-height:92px;border-radius:16px;display:flex;flex-direction:column;align-items:stretch;padding:8px 12px 10px;position:relative;overflow:hidden;color:var(--player-color);box-shadow:0 1px 0 rgba(255,255,255,.1) inset,0 -1px 0 rgba(0,0,0,.4) inset,0 4px 24px rgba(0,0,0,.55);transition:box-shadow .3s var(--ease)}
-.score-card::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;background:currentColor;opacity:.08}
+.score-card::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;background:currentColor;opacity:.75}
 .score-card::after{content:'';position:absolute;top:0;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);pointer-events:none;z-index:1}
 .score-card.selected{box-shadow:0 1px 0 rgba(255,255,255,.1) inset,0 -1px 0 rgba(0,0,0,.4) inset,0 0 0 2.5px var(--gold),0 0 18px rgba(184,137,58,.45)}
 .score-card-name{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;padding:2px 0;touch-action:manipulation}
@@ -148,7 +148,7 @@ body,html{height:100%;font-family:Montserrat,sans-serif;background:var(--felt);o
 .mam-panel{position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(8,8,12,.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-top:1px solid rgba(184,137,58,.15);box-shadow:0 -1px 0 rgba(255,255,255,.04);padding:16px 20px 32px;display:flex;flex-direction:column;align-items:center;gap:14px;animation:slideUp .25s var(--ease) both}
 .mam-panel.hidden{display:none}
 @keyframes slideUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
-.mam-panel-label{font-size:.68rem;letter-spacing:.28em;color:rgba(255,255,255,.3);text-transform:uppercase}
+.mam-panel-label{font-size:.68rem;letter-spacing:.28em;color:rgba(255,255,255,.3);text-transform:uppercase;margin-bottom:5px;}
 #mamBtnsWrap{display:flex;flex-wrap:wrap;gap:10px;width:100%;max-width:380px;justify-content:center}
 #mamBtnsWrap.hidden{display:none}
 .mam-btn{flex:1 1 auto;min-width:52px;max-width:110px;height:64px;border-radius:14px;border:none;font-family:Montserrat,sans-serif;font-size:1.55rem;font-weight:700;letter-spacing:.04em;cursor:pointer;transition:transform .22s var(--ease),box-shadow .22s}
@@ -162,7 +162,7 @@ body,html{height:100%;font-family:Montserrat,sans-serif;background:var(--felt);o
 .mam-undo-btn{height:36px;min-width:84px;padding:0 12px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:rgba(255,255,255,.88);font-family:Montserrat,sans-serif;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;cursor:pointer;transition:all .22s var(--ease)}
 .mam-undo-btn:hover{background:rgba(184,137,58,.14);border-color:rgba(184,137,58,.35);color:var(--gold2);transform:translateY(-1px)}
 .mam-undo-btn.hidden{display:none}
-.mam-cancel-btn{position:absolute;top:12px;right:14px;width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:rgba(255,255,255,.4);font-size:.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.18s}
+.mam-cancel-btn{position:absolute;top:8px;right:14px;width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:rgba(255,255,255,.4);font-size:.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.18s}
 .mam-cancel-btn:hover{background:rgba(255,255,255,.1);color:rgba(255,255,255,.8)}
 .x2-row{width:100%;max-width:380px;margin:2px 0}
 .x2-row.hidden{display:none}
