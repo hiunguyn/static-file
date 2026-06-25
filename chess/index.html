@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Game cờ vua</title>
+    <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin">
+    <meta http-equiv="Cross-Origin-Embedder-Policy" content="require-corp">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
+    <script src="./coi-serviceworker.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Game cờ vua</h2>
+        <div id="board" style="width: 400px"></div>
+        <div class="controls">
+            <p>Trạng thái: <span id="status">Đang chờ...</span></p>
+            <button onclick="resetGame()">Chơi lại</button>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://unpkg.com/chess.js@0.10.3/chess.js"></script>
+    <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
