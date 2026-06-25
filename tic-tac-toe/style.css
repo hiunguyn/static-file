@@ -1,0 +1,52 @@
+* { box-sizing: border-box; }
+body { font-family: sans-serif; text-align: center; margin: 20px; }
+/* 100x100 board, small cells */
+/* 50 columns × 5 rows */
+/* 50 × 50 board – default desktop */
+.board {
+  display: grid;
+  grid-template-columns: repeat(50, 20px);
+  grid-template-rows: repeat(50, 20px);
+  gap: 2px;
+  justify-content: center;
+  margin-bottom: 10px;
+  max-width: 100vw;
+  overflow: auto;
+}
+.cell {
+  width: 20px; height: 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  background: #eee; cursor: pointer;
+  border: 1px solid #ccc;
+}
+.cell:hover { background: #ddd; }
+
+/* ─── Mobile ─── */
+@media (max-width: 768px) {
+  .board {
+    grid-template-columns: repeat(50, 10px);
+    grid-template-rows: repeat(50, 10px);
+    gap: 1px;
+  }
+  .cell {
+    width: 10px; height: 10px;
+    font-size: 0.5rem;
+    border: 0.5px solid #ccc;
+  }
+}
+
+@media (max-width: 480px) {
+  .board {
+    grid-template-columns: repeat(50, 6px);
+    grid-template-rows: repeat(50, 6px);
+    gap: 0.5px;
+  }
+  .cell {
+    width: 6px; height: 6px;
+    font-size: 0.4rem;
+    border: 0.5px solid #ccc;
+  }
+}
+.cell:hover { background: #ddd; }
+#status { font-size: 1.2rem; margin-top: 10px; }
