@@ -1,4 +1,4 @@
-const ROWS = 50, COLS = 50, WIN = 5;
+const ROWS = 30, COLS = 30, WIN = 5;
 let board = Array(ROWS * COLS).fill('');
 let currentPlayer = 'X';
 let gameOver = false;

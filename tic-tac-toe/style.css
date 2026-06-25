@@ -5,8 +5,8 @@ body { font-family: sans-serif; text-align: center; margin: 20px; }
 /* 50 × 50 board – default desktop */
 .board {
   display: grid;
-  grid-template-columns: repeat(50, 20px);
-  grid-template-rows: repeat(50, 20px);
+  grid-template-columns: repeat(30, 20px);
+  grid-template-rows: repeat(30, 20px);
   gap: 2px;
   justify-content: center;
   margin-bottom: 10px;
@@ -25,8 +25,8 @@ body { font-family: sans-serif; text-align: center; margin: 20px; }
 /* ─── Mobile ─── */
 @media (max-width: 768px) {
   .board {
-    grid-template-columns: repeat(50, 10px);
-    grid-template-rows: repeat(50, 10px);
+    grid-template-columns: repeat(30, 10px);
+    grid-template-rows: repeat(30, 10px);
     gap: 1px;
   }
   .cell {
@@ -38,9 +38,9 @@ body { font-family: sans-serif; text-align: center; margin: 20px; }
 
 @media (max-width: 480px) {
   .board {
-    grid-template-columns: repeat(50, 6px);
-    grid-template-rows: repeat(50, 6px);
-    gap: 0.5px;
+    grid-template-columns: repeat(30, 6px);
+    grid-template-rows: repeat(30, 6px);
+    gap: 1px;
   }
   .cell {
     width: 6px; height: 6px;
